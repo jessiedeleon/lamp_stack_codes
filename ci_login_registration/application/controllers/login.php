@@ -14,18 +14,18 @@ class Login extends Main {
 		if(! $this->is_login())
 			$this->load->view('login_registration');
 		else
-			redirect(base_url("/user/profile"));
+			redirect(base_url("/users/profile"));
 	}
 
 	public function log_in()
 	{
 		if(! $this->is_login())
 		{
-			$this->load->model("login_model");
-			$login_user = $this->login_model->login($this->input->post());
+			$this->load->model("user");
+			$login_user = $this->user->login($this->input->post());
 
 			if($login_user["success"])
-				redirect(base_url("/user/profile"));
+				redirect(base_url("/users/profile"));
 			else
 			{
 				$this->view_data["login_user"] = $login_user;
@@ -33,13 +33,13 @@ class Login extends Main {
 			}
 		}
 		else
-			redirect(base_url("/user/profile"));
+			redirect(base_url("/users/profile"));
 	}
 
 	public function register()
 	{
-		$this->load->model("login_model");
-		$this->view_data["add_user"] = $this->login_model->register_user($this->input->post());
+		$this->load->model("user");
+		$this->view_data["add_user"] = $this->user->register_user($this->input->post());
 
 		$this->load->view('login_registration', $this->view_data);
 	}

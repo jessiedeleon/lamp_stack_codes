@@ -2,7 +2,7 @@
 
 require_once("main.php");
 
-class User extends Main {
+class Users extends Main {
 
 	public function __construct()
 	{
